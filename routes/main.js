@@ -20,13 +20,14 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/:id',(req,res)=>{
-    let user = db.find(el => el.id == req.params.id)
+        let user = db.find(el => el.id == req.params.id)
+    
+        if(user == undefined){
+            res.status(404).send('Usuario no encontrado.')
+        }else{
+            res.status(200).send(user)
+        }
 
-    if(user == undefined){
-        res.status(404).send('Usuario no encontrado.')
-    }else{
-        res.status(200).send(user)
-    }
 })
 
 
